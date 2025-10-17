@@ -9,9 +9,10 @@ export const createUser = (req: Request, res: Response) => {
   if (!nom || !edat) {
     return res.status(400).json({ error: "Nom i edat són obligatoris." });
   }
-
+  let id: number = obtenirUsuaris().length;
   // Simula la creació de l'usuari
-  const usuariCreat = { nom, edat };
+  const usuariCreat = { id, nom, edat };
+  afegirUsuari(usuariCreat);
 
   res.status(201).json({ missatge: "Usuari creat correctament", usuari: usuariCreat });
 };
